@@ -67,3 +67,15 @@ templates and add governed proposals for approved clarification decisions.
 **Repository:** https://github.com/junsenliu/forgerelay
 
 **Try it:** https://forgerelay.vercel.app
+
+**Demo video:** https://youtu.be/cg_hcuHM5XQ
+
+## Disclosures
+
+ForgeRelay and this repository were created on July 26, 2026 during the
+submission period. The entrant's pre-existing manufacturing experience and
+LinkSea brand informed the problem selection, but no source code or customer
+data was copied from an earlier product. OpenAI Codex assisted with
+implementation, testing, documentation, and video production under the
+entrant's direction. The project uses open-source dependencies under their
+respective licenses.

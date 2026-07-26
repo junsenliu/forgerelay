@@ -1,0 +1,6 @@
+node_modules
+.chrome-capture-profile
+out
+dist
+.DS_Store
+.env

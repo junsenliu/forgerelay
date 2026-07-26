@@ -1,0 +1,40 @@
+{
+  "name": "forgerelay-datahub-video",
+  "version": "1.0.0",
+  "description": "English captioned ForgeRelay DataHub MCP competition demo",
+  "repository": {},
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "@remotion/captions": "4.0.499",
+    "@remotion/cli": "4.0.499",
+    "@remotion/media": "4.0.499",
+    "@remotion/tailwind-v4": "4.0.499",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.499",
+    "tailwindcss": "4.0.0"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.499",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.19.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "captions": "node scripts/generate-captions.mjs",
+    "capture": "node scripts/capture-evidence.mjs",
+    "voiceover": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/generate-voiceover.ps1",
+    "still": "remotion still ForgeRelayDataHub out/forgerelay-datahub-preview.png --frame=1260",
+    "render": "remotion render ForgeRelayDataHub out/forgerelay-datahub-demo.mp4",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}

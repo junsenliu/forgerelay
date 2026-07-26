@@ -1,0 +1,74 @@
+﻿[
+    {
+        "id":  "01-title",
+        "text":  "ForgeRelay turns an incomplete manufacturing R-F-Q into an auditable clarification package, without inventing the missing details.",
+        "file":  "audio/01-title.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  8.832
+    },
+    {
+        "id":  "02-problem",
+        "text":  "This synthetic request includes material, quantity, finish, and delivery date. But its critical interface tolerance and inspection method are missing. Pricing it now would create avoidable risk.",
+        "file":  "audio/02-problem.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  13.584
+    },
+    {
+        "id":  "03-analysis",
+        "text":  "The operator loads the sample and runs quote readiness analysis. ForgeRelay separates confirmed facts from unknowns, assigns a readiness score, and turns every gap into a clear supplier question.",
+        "file":  "audio/03-analysis.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  13.536
+    },
+    {
+        "id":  "04-mcp",
+        "text":  "Next, the live DataHub M-C-P Server adds organizational context. ForgeRelay calls search, get entities, and get lineage against a local DataHub Core deployment. The tool trace is visible in the result.",
+        "file":  "audio/04-mcp.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  13.776
+    },
+    {
+        "id":  "05-lineage",
+        "text":  "The catalog contains five synthetic datasets connected by four lineage edges, from the R-F-Q source through extracted constraints and clarification planning to the quote ready package.",
+        "file":  "audio/05-lineage.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  11.832
+    },
+    {
+        "id":  "06-impact",
+        "text":  "Ownership, schema, and downstream impact explain who should review the case, which fields matter, and which quote artifact could be affected by an unanswered requirement.",
+        "file":  "audio/06-impact.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  11.136
+    },
+    {
+        "id":  "07-safety",
+        "text":  "Safety stays explicit. The demo uses synthetic data. DataHub mutations are disabled. Live calls are disabled. And no customer document or credential is committed.",
+        "file":  "audio/07-safety.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  12.384
+    },
+    {
+        "id":  "08-close",
+        "text":  "ForgeRelay is open source under Apache two point zero. The repository, implementation evidence, and reproducible local demo are ready for review.",
+        "file":  "audio/08-close.mp3",
+        "voice":  "en-US-AvaNeural",
+        "rate":  "-4%",
+        "pitch":  "-2Hz",
+        "durationSeconds":  10.416
+    }
+]

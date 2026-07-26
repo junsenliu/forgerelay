@@ -9,7 +9,8 @@
 - [x] Optional result guarded by both an environment flag and human confirmation
 - [x] Public repository with Apache-2.0 license
 - [x] Functional judge-accessible URL with an honestly labeled synthetic fallback
-- [ ] English demo video under three minutes
+- [x] English demo video under three minutes:
+  <https://youtu.be/cg_hcuHM5XQ>
 - [x] Sample outputs in repository
 - [x] Pre-existing adjacent product ideas disclosed; no source code copied
 

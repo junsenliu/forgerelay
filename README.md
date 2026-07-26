@@ -5,6 +5,8 @@ manufacturers. It converts an incomplete request for quotation into a
 quote-ready, evidence-backed work package and coordinates the missing
 information with suppliers.
 
+**Demo video:** <https://youtu.be/cg_hcuHM5XQ>
+
 The project was created on **July 26, 2026**. It is a new, independent product
 and codebase built during the active submission windows for the competitions
 listed below. It uses synthetic sample data and does not contain customer

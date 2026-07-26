@@ -75,6 +75,18 @@ local DataHub MCP Server.
 - `npm run check`: passed
 - `npm run smoke`: passed with the three-tool live DataHub trace
 
+## Public demo video
+
+- YouTube: <https://youtu.be/cg_hcuHM5XQ>
+- Duration: 1 minute 41 seconds
+- Format: 1920×1080, 30 fps, H.264 video with AAC stereo audio
+- Language: English neural narration with burned-in English captions
+- Footage: real ForgeRelay result showing the live
+  `search → get_entities → get_lineage` DataHub MCP trace
+- Copyright check: YouTube reported no issues
+- Branding: ForgeRelay is the submission brand; the closing frame identifies it
+  as an independent project by LinkSea using the entrant-owned LinkSea mark
+
 Public repository: <https://github.com/junsenliu/forgerelay>
 
 Public fallback demo: <https://forgerelay.vercel.app>
