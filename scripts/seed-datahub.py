@@ -58,9 +58,14 @@ def main() -> None:
             platform="forgerelay",
             name=name,
             schema=schema,
+            owners=["rfq-engineering"],
             description=(
                 "Synthetic ForgeRelay hackathon asset. Contains no customer data."
             ),
+            custom_properties={
+                "synthetic": "true",
+                "owner_team": "RFQ Engineering",
+            },
         )
         client.entities.upsert(dataset)
 
@@ -78,4 +83,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -30,7 +30,7 @@ human explicitly confirms the mutation.
 ## How we built it
 
 ForgeRelay is an English-only Node.js application with a dependency-light web
-interface, Gemini structured output, DataHub's Streamable HTTP MCP transport,
+interface, Gemini structured output, DataHub's official stdio MCP transport,
 CockroachDB-compatible durable memory, and a guarded CALL-E adapter. Synthetic
 DataHub assets model an RFQ source, extracted constraints, clarification outcomes,
 and a quote package.

@@ -42,10 +42,37 @@ copy .env.example .env
 npm start
 ```
 
-Open <http://localhost:8080>. Without credentials the app runs in a visibly
+Open <http://localhost:3000>. DataHub GMS remains on its official local port,
+<http://localhost:8080>. Without credentials the app runs in a visibly
 labeled deterministic demo mode. A competition release is not considered
 complete until the relevant sponsor integration is configured and captured in
 the evidence pack.
+
+## Local DataHub proof
+
+Start DataHub Core with the official quickstart, seed the synthetic catalog,
+and connect the official MCP Server over stdio:
+
+```bash
+# Run these in an isolated Python 3.11 environment.
+python -m pip install -r scripts/requirements-datahub.txt
+datahub docker quickstart --version stable
+python scripts/seed-datahub.py
+```
+
+Set these local-only values in `.env`:
+
+```dotenv
+DATAHUB_MCP_COMMAND=uvx
+DATAHUB_MCP_ARGS=mcp-server-datahub@latest
+DATAHUB_GMS_URL=http://localhost:8080
+DATAHUB_ENABLE_MUTATIONS=false
+```
+
+Then run `npm start` and `npm run smoke`. A successful live proof reports
+`datahubSource: "datahub-mcp"` and the tool trace
+`search → get_entities → get_lineage`. See
+[`submissions/datahub/EVIDENCE.md`](submissions/datahub/EVIDENCE.md).
 
 ## Live demo
 

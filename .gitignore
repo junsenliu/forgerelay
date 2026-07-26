@@ -1,4 +1,7 @@
 node_modules/
+.datahub-venv/
+.datahub-runtime/
+.datahub-tools/
 .env
 .env.*
 !.env.example
@@ -10,4 +13,3 @@ tmp/
 *.key
 *.crt
 .DS_Store
-

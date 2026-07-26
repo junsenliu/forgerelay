@@ -1,4 +1,4 @@
-const baseUrl = process.env.APP_BASE_URL || "http://localhost:8080";
+const baseUrl = process.env.APP_BASE_URL || "http://localhost:3000";
 
 const health = await fetch(`${baseUrl}/api/health`);
 if (!health.ok) {
@@ -29,9 +29,11 @@ console.log(
       caseId: payload.memory.id,
       source: payload.analysis.source,
       readinessScore: payload.analysis.readinessScore,
+      datahubConfigured: Boolean(payload.context?.configured),
+      datahubSource: payload.context?.source || "unknown",
+      datahubToolTrace: payload.context?.toolTrace || [],
     },
     null,
     2,
   ),
 );
-

@@ -76,6 +76,7 @@ async function createClient() {
         DATAHUB_GMS_URL:
           process.env.DATAHUB_GMS_URL || "http://localhost:8080",
         DATAHUB_GMS_TOKEN: process.env.DATAHUB_GMS_TOKEN || "",
+        LOGURU_LEVEL: process.env.DATAHUB_MCP_LOG_LEVEL || "WARNING",
       },
     });
   } else {
@@ -95,6 +96,13 @@ function makeSearchQuery(analysis) {
     "rfq",
   ].filter(Boolean);
   return terms.join(" ");
+}
+
+export function makeDataHubSearchArguments(analysis) {
+  return {
+    query: makeSearchQuery(analysis),
+    num_results: 5,
+  };
 }
 
 export async function getDataHubContext(analysis) {
@@ -118,15 +126,23 @@ export async function getDataHubContext(analysis) {
     };
   }
 
-  const search = await client.callTool({
+  let search = await client.callTool({
     name: "search",
-    arguments: {
-      query: makeSearchQuery(analysis),
-      count: 5,
-    },
+    arguments: makeDataHubSearchArguments(analysis),
   });
-  const normalized = normalizeToolResult(search);
-  const urns = [...collectUrns(normalized)].slice(0, 5);
+  let normalized = normalizeToolResult(search);
+  let urns = [...collectUrns(normalized)].slice(0, 5);
+  if (urns.length === 0) {
+    search = await client.callTool({
+      name: "search",
+      arguments: {
+        query: "synthetic rfq",
+        num_results: 5,
+      },
+    });
+    normalized = normalizeToolResult(search);
+    urns = [...collectUrns(normalized)].slice(0, 5);
+  }
   const toolTrace = ["search"];
   const entities =
     urns.length > 0

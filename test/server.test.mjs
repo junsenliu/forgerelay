@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { createForgeRelayServer } from "../src/server.mjs";
+
+process.env.FORGERELAY_SKIP_ENV_FILE = "true";
+
+const { createForgeRelayServer } = await import("../src/server.mjs");
 
 async function withServer(callback) {
   const server = createForgeRelayServer();
@@ -70,4 +73,3 @@ test("fails closed when a live call is requested but disabled", async () => {
     assert.match(payload.error, /disabled/i);
   });
 });
-
