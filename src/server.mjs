@@ -5,6 +5,10 @@ import { fileURLToPath } from "node:url";
 import { analyzeRfq } from "./lib/analyze.mjs";
 import { calleStatus, createSupplierCall, recordCallWebhook } from "./lib/calle.mjs";
 import {
+  cockroachMcpStatus,
+  verifyCockroachSchema,
+} from "./lib/cockroach-mcp.mjs";
+import {
   dataHubStatus,
   getDataHubContext,
   saveImpactDocument,
@@ -80,6 +84,7 @@ async function runAnalysis(payload) {
     const analysis = await analyzeRfq(input, { signal: controller.signal });
     const context = await getDataHubContext(analysis);
     const record = await createCase(analysis, context);
+    const cockroachMcp = await verifyCockroachSchema();
     return {
       analysis,
       context,
@@ -87,6 +92,7 @@ async function runAnalysis(payload) {
         id: record.id,
         provider: record.source,
         version: record.version,
+        mcp: cockroachMcp,
       },
     };
   } finally {
@@ -108,7 +114,10 @@ async function route(request, response) {
           model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
         },
         datahub: dataHubStatus(),
-        memory: memoryStatus(),
+        memory: {
+          ...memoryStatus(),
+          mcp: cockroachMcpStatus(),
+        },
         calle: calleStatus(),
       },
     });
@@ -211,4 +220,3 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log(`ForgeRelay listening on http://localhost:${port}`);
   });
 }
-

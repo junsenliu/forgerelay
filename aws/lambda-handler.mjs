@@ -1,4 +1,5 @@
 import { analyzeRfq } from "../src/lib/analyze.mjs";
+import { verifyCockroachSchema } from "../src/lib/cockroach-mcp.mjs";
 import { getDataHubContext } from "../src/lib/datahub-context.mjs";
 import { createCase } from "../src/lib/memory.mjs";
 import { validateRfqInput } from "../src/lib/validation.mjs";
@@ -10,6 +11,7 @@ export async function handler(event) {
   const analysis = await analyzeRfq(input);
   const context = await getDataHubContext(analysis);
   const record = await createCase(analysis, context);
+  const cockroachMcp = await verifyCockroachSchema();
 
   return {
     statusCode: 200,
@@ -21,8 +23,8 @@ export async function handler(event) {
         id: record.id,
         provider: record.source,
         version: record.version,
+        mcp: cockroachMcp,
       },
     }),
   };
 }
-

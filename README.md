@@ -31,6 +31,9 @@ documents or code from pre-existing LinkSea or Dollar products.
 | CockroachDB × AWS Agentic Memory | Durable, resumable RFQ case memory |
 | CALL-E | Real supplier clarification calls with structured outcomes |
 
+The CALL-E entry also has a validated public Agent Skill contribution in
+[`CALLE-AI/awesome-phone-call-agents#35`](https://github.com/CALLE-AI/awesome-phone-call-agents/pull/35).
+
 ## Local start
 
 ```bash
@@ -58,4 +61,3 @@ the evidence pack.
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).
-

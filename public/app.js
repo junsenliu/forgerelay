@@ -80,12 +80,14 @@ function renderResult(payload) {
     `${analysis.questions.length} question${analysis.questions.length === 1 ? "" : "s"}`;
 
   byId("datahub-mode").textContent = context.configured
-    ? "Live DataHub MCP context"
+    ? `Live DataHub MCP · ${(context.toolTrace || []).join(" → ")}`
     : "Synthetic context";
   byId("datahub-impact").textContent = context.impact;
   byId("memory-mode").textContent =
     memory.provider === "cockroachdb"
-      ? "CockroachDB persistent memory"
+      ? memory.mcp?.configured
+        ? "CockroachDB memory · Managed MCP verified"
+        : "CockroachDB persistent memory"
       : "Ephemeral demo memory";
   byId("memory-id").textContent = `Case ${memory.id.slice(0, 8)} · v${memory.version}`;
   setView("results");
@@ -187,4 +189,3 @@ callForm.addEventListener("submit", async (event) => {
 });
 
 loadHealth();
-

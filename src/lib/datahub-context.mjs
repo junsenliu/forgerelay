@@ -18,6 +18,27 @@ function normalizeToolResult(result) {
   return textParts.join("\n").slice(0, 12_000);
 }
 
+function collectUrns(value, urns = new Set()) {
+  if (typeof value === "string") {
+    for (const match of value.matchAll(/urn:li:[^\s"'<>]+/g)) {
+      urns.add(match[0].replace(/[.,;]+$/, ""));
+    }
+    return urns;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      collectUrns(item, urns);
+    }
+    return urns;
+  }
+  if (value && typeof value === "object") {
+    for (const item of Object.values(value)) {
+      collectUrns(item, urns);
+    }
+  }
+  return urns;
+}
+
 async function createClient() {
   if (activeClient) {
     return activeClient;
@@ -93,6 +114,7 @@ export async function getDataHubContext(analysis) {
       ],
       impact:
         "Synthetic context only. Configure DataHub MCP to retrieve real ownership and lineage.",
+      toolTrace: [],
     };
   }
 
@@ -104,13 +126,49 @@ export async function getDataHubContext(analysis) {
     },
   });
   const normalized = normalizeToolResult(search);
+  const urns = [...collectUrns(normalized)].slice(0, 5);
+  const toolTrace = ["search"];
+  const entities =
+    urns.length > 0
+      ? normalizeToolResult(
+          await client.callTool({
+            name: "get_entities",
+            arguments: { urns },
+          }),
+        )
+      : null;
+  if (entities !== null) {
+    toolTrace.push("get_entities");
+  }
+  const lineage =
+    urns.length > 0
+      ? normalizeToolResult(
+          await client.callTool({
+            name: "get_lineage",
+            arguments: {
+              urn: urns[0],
+              upstream: false,
+              max_hops: 3,
+              max_results: 10,
+            },
+          }),
+        )
+      : null;
+  if (lineage !== null) {
+    toolTrace.push("get_lineage");
+  }
 
   return {
     configured: true,
     source: "datahub-mcp",
     search: normalized,
+    entities,
+    lineage,
+    toolTrace,
     impact:
-      "DataHub MCP context was retrieved before the clarification plan was finalized.",
+      toolTrace.length === 3
+        ? "DataHub MCP search, entity metadata, and downstream lineage were retrieved before the clarification plan was finalized."
+        : "DataHub MCP search completed, but no entity URN was available for entity and lineage expansion.",
   };
 }
 
@@ -161,4 +219,3 @@ export function dataHubStatus() {
         : "demo",
   };
 }
-

@@ -7,6 +7,10 @@ import {
   recordCallWebhook,
 } from "../src/lib/calle.mjs";
 import {
+  cockroachMcpStatus,
+  verifyCockroachSchema,
+} from "../src/lib/cockroach-mcp.mjs";
+import {
   dataHubStatus,
   getDataHubContext,
   saveImpactDocument,
@@ -50,6 +54,7 @@ async function runAnalysis(payload) {
     const analysis = await analyzeRfq(input, { signal: controller.signal });
     const context = await getDataHubContext(analysis);
     const record = await createCase(analysis, context);
+    const cockroachMcp = await verifyCockroachSchema();
     return {
       analysis,
       context,
@@ -57,6 +62,7 @@ async function runAnalysis(payload) {
         id: record.id,
         provider: record.source,
         version: record.version,
+        mcp: cockroachMcp,
       },
     };
   } finally {
@@ -81,7 +87,10 @@ async function route(request, response) {
           model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
         },
         datahub: dataHubStatus(),
-        memory: memoryStatus(),
+        memory: {
+          ...memoryStatus(),
+          mcp: cockroachMcpStatus(),
+        },
         calle: calleStatus(),
       },
     });

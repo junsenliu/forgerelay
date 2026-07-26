@@ -2,6 +2,9 @@
 
 - [ ] Project code created during the June 30–August 18 submission period
 - [ ] CockroachDB is the persistent agent memory layer
+- [ ] CockroachDB Cloud Managed MCP Server used for live schema verification
+- [ ] `ccloud` CLI used to provision or inspect the competition cluster
+- [ ] At least two required CockroachDB tools are shown in the evidence
 - [ ] AWS service is meaningfully used in the running application
 - [ ] Case handoff survives process restart
 - [ ] Agent event history is append-only and visible in the demo
@@ -17,4 +20,3 @@ Agent A extracts a case, Agent B resumes after an interruption, and the system
 proves exactly which structured facts, questions, and supplier outcomes were
 available at handoff. CockroachDB preserves the minimum durable memory; AWS
 runs the stateless agent step.
-
