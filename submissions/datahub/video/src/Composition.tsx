@@ -413,12 +413,22 @@ const ForgeRelayDataHubVideo: React.FC = () => (
 );
 
 export const MyComposition = () => (
-  <Composition
-    id="ForgeRelayDataHub"
-    component={ForgeRelayDataHubVideo}
-    durationInFrames={TOTAL_FRAMES}
-    fps={FPS}
-    width={1920}
-    height={1080}
-  />
+  <>
+    <Composition
+      id="ForgeRelayDataHub"
+      component={ForgeRelayDataHubVideo}
+      durationInFrames={TOTAL_FRAMES}
+      fps={FPS}
+      width={1920}
+      height={1080}
+    />
+    <Composition
+      id="ForgeRelayThumbnail"
+      component={CloseScene}
+      durationInFrames={60}
+      fps={FPS}
+      width={1620}
+      height={1080}
+    />
+  </>
 );
