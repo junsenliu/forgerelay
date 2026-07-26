@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ForgeRelay turns incomplete manufacturing RFQs into evidence-backed clarification plans."
+    />
+    <title>ForgeRelay — RFQs ready to move</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="ForgeRelay home">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>ForgeRelay</span>
+      </a>
+      <div class="status-pill" id="system-status">
+        <span class="status-dot"></span>
+        Checking integrations
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">AI RFQ CLARIFICATION FOR SMALL MANUFACTURERS</p>
+          <h1>Turn incomplete specs into a quote-ready conversation.</h1>
+          <p class="hero-copy">
+            ForgeRelay extracts what is known, traces what could be affected,
+            and asks suppliers only the questions that block a responsible
+            quote.
+          </p>
+        </div>
+        <div class="hero-proof" aria-label="ForgeRelay workflow">
+          <div><strong>01</strong><span>Extract</span></div>
+          <div><strong>02</strong><span>Trace</span></div>
+          <div><strong>03</strong><span>Clarify</span></div>
+          <div><strong>04</strong><span>Remember</span></div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <form class="input-panel" id="rfq-form">
+          <div class="panel-heading">
+            <div>
+              <p class="kicker">INPUT</p>
+              <h2>Manufacturing RFQ</h2>
+            </div>
+            <button class="text-button" type="button" id="load-sample">
+              Load synthetic sample
+            </button>
+          </div>
+
+          <label>
+            Case name
+            <input
+              id="case-name"
+              name="caseName"
+              maxlength="120"
+              placeholder="Outdoor sensor bracket RFQ"
+              required
+            />
+          </label>
+
+          <label class="grow">
+            RFQ text
+            <textarea
+              id="rfq-text"
+              name="rfqText"
+              maxlength="20000"
+              placeholder="Paste the request, specifications, and commercial notes here..."
+              required
+            ></textarea>
+          </label>
+
+          <div class="privacy-note">
+            <span aria-hidden="true">◇</span>
+            <p>
+              Use synthetic or authorized data only. ForgeRelay sends the
+              minimum entered text to the configured analysis provider.
+            </p>
+          </div>
+
+          <button class="primary-button" type="submit" id="analyze-button">
+            <span>Analyze quote readiness</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <section class="result-panel" aria-live="polite">
+          <div class="empty-state" id="empty-state">
+            <div class="orbit" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p class="kicker">OUTPUT</p>
+            <h2>A defensible clarification plan appears here.</h2>
+            <p>
+              Facts stay separate from assumptions. Missing inputs become
+              prioritized questions, with metadata context and resumable memory.
+            </p>
+          </div>
+
+          <div class="results hidden" id="results">
+            <div class="result-topline">
+              <div>
+                <p class="kicker">QUOTE READINESS</p>
+                <div class="score-row">
+                  <strong id="readiness-score">0</strong><span>%</span>
+                </div>
+              </div>
+              <div class="source-badge" id="analysis-source">Pending</div>
+            </div>
+
+            <p class="summary" id="summary"></p>
+
+            <div class="result-grid">
+              <article>
+                <p class="kicker">CONFIRMED FACTS</p>
+                <dl id="facts-list"></dl>
+              </article>
+              <article>
+                <p class="kicker">MISSING INPUTS</p>
+                <ul class="issue-list" id="missing-list"></ul>
+              </article>
+            </div>
+
+            <article class="questions-card">
+              <div class="card-heading">
+                <div>
+                  <p class="kicker">SUPPLIER QUESTIONS</p>
+                  <h3>Ask only what blocks the quote</h3>
+                </div>
+                <span id="question-count">0 questions</span>
+              </div>
+              <ol id="question-list"></ol>
+            </article>
+
+            <div class="evidence-row">
+              <article>
+                <p class="kicker">DATAHUB CONTEXT</p>
+                <strong id="datahub-mode">Demo context</strong>
+                <p id="datahub-impact"></p>
+              </article>
+              <article>
+                <p class="kicker">AGENT MEMORY</p>
+                <strong id="memory-mode">Session memory</strong>
+                <p id="memory-id"></p>
+              </article>
+            </div>
+
+            <button class="secondary-button" type="button" id="call-button">
+              Prepare supplier call
+            </button>
+          </div>
+
+          <div class="error-state hidden" id="error-state">
+            <p class="kicker">REQUEST FAILED</p>
+            <h2>ForgeRelay could not finish this analysis.</h2>
+            <p id="error-message"></p>
+          </div>
+        </section>
+      </section>
+
+      <section class="integration-strip">
+        <p>BUILT AS ONE AUDITABLE LOOP</p>
+        <div>
+          <span>Gemini</span>
+          <span>DataHub MCP</span>
+          <span>CockroachDB</span>
+          <span>AWS</span>
+          <span>CALL-E</span>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="call-dialog">
+      <form method="dialog" class="dialog-card" id="call-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="kicker">HUMAN CHECKPOINT</p>
+            <h2>Prepare a real supplier call</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close">×</button>
+        </div>
+        <p>
+          No call is placed until live calling is enabled on the server and you
+          explicitly confirm this recipient.
+        </p>
+        <label>
+          Supplier name
+          <input id="supplier-name" maxlength="120" required />
+        </label>
+        <label>
+          Phone number (E.164)
+          <input id="supplier-phone" placeholder="+14155550123" required />
+        </label>
+        <label class="checkbox-label">
+          <input id="confirm-call" type="checkbox" />
+          <span>I verified the recipient and authorize this clarification call.</span>
+        </label>
+        <div class="dialog-actions">
+          <button class="text-button" value="cancel">Cancel</button>
+          <button class="primary-button" type="submit" value="default">
+            Place authorized call
+          </button>
+        </div>
+        <p class="dialog-feedback" id="call-feedback"></p>
+      </form>
+    </dialog>
+
+    <footer>
+      <span>ForgeRelay · Created July 26, 2026</span>
+      <span>Synthetic demo data · Human-authorized actions</span>
+    </footer>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
+

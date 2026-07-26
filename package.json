@@ -1,0 +1,25 @@
+{
+  "name": "forgerelay",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI RFQ clarification and supplier follow-up for small manufacturers.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.mjs",
+    "start": "node src/server.mjs",
+    "test": "node --test",
+    "check": "node --check src/server.mjs && node --check public/app.js",
+    "smoke": "node scripts/smoke.mjs",
+    "seed:datahub": "python scripts/seed-datahub.py"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "pg": "^8.16.3"
+  },
+  "overrides": {
+    "@hono/node-server": "^2.0.5"
+  }
+}
