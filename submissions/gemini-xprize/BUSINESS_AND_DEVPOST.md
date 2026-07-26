@@ -65,3 +65,5 @@ work without pretending the AI can approve a manufacturing quote.
 - Catalog mutations remain disabled until separately confirmed.
 
 **Repository:** https://github.com/junsenliu/forgerelay
+
+**Try it:** https://forgerelay.vercel.app

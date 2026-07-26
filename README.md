@@ -47,6 +47,12 @@ labeled deterministic demo mode. A competition release is not considered
 complete until the relevant sponsor integration is configured and captured in
 the evidence pack.
 
+## Live demo
+
+The public, credential-free judging build is available at
+<https://forgerelay.vercel.app>. It uses the same synthetic fallback as the
+local app and labels sponsor integrations honestly when they are not configured.
+
 ## Safety
 
 - Live calls are disabled by default.

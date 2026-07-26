@@ -65,3 +65,5 @@ We plan to expand the synthetic catalog into reusable manufacturing metadata
 templates and add governed proposals for approved clarification decisions.
 
 **Repository:** https://github.com/junsenliu/forgerelay
+
+**Try it:** https://forgerelay.vercel.app

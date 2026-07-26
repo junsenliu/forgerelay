@@ -61,3 +61,5 @@ We plan to add regional failover testing, bounded vector retrieval for similar
 clarifications, and a reviewer view for event history.
 
 **Repository:** https://github.com/junsenliu/forgerelay
+
+**Try it:** https://forgerelay.vercel.app
